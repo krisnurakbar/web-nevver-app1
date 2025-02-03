@@ -1,0 +1,38 @@
+.button-container {
+    opacity: 0;
+    transition: opacity 0.3s;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.message-container:hover .button-container {
+    opacity: 1;
+}
+
+.button-container button {
+    padding: 4px 8px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.button-container .btn-outline-primary {
+    padding: 4px 8px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+@media (max-width: 767px) {
+    .chat-message-box {
+        flex-direction: column;
+    }
+
+    .chat-message-box textarea {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    .chat-message-box button {
+        width: 100%;
+    }
+}
