@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import ThemeToggleButton from "../helper/ThemeToggleButton";
 import Conversation from "../components/child/Conversation";
 import TextGeneratorNewChatLayer from "../components/TextGeneratorNewChatLayer";
@@ -13,6 +13,7 @@ const MasterLayout = ({ children }) => {
   const [selectedConversation, setSelectedConversation] = useState('');
   const location = useLocation(); // Hook to get the current route
   const savedToken = localStorage.getItem('authToken');
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Function to handle dropdown clicks
@@ -99,6 +100,14 @@ const MasterLayout = ({ children }) => {
     setMobileMenu(!mobileMenu);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('authToken'); // Remove the token from localStorage
+    // setAuthToken(null); // Remove the token from the state
+    alert('You have been logged out successfully.'); // Show a success message
+    navigate('/', { replace: true }); // Redirect to the sign-in page
+    // console.log('AuthToken:', localStorage.getItem('authToken'));
+    window.location.reload();
+  };
 
 
   return (
@@ -410,7 +419,7 @@ const MasterLayout = ({ children }) => {
                       <li>
                         <Link
                           className="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3"
-                          to="#"
+                          onClick={handleLogout}
                         >
                           <Icon icon="lucide:power" className="icon text-xl" /> Log Out
                         </Link>
