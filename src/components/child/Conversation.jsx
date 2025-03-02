@@ -12,7 +12,7 @@ const Conversation = ({setSelectedConversation, setIsLoading, setSidebarActive, 
         const fetchConversations = async () => {
             setIsLoading(true);
             try {
-                const response = await axios.get('http://localhost:5000/api/chat/conversations', {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/chat/conversations`, {
                     headers: {
                         'Authorization': 'Bearer ' + savedToken
                     }
@@ -25,7 +25,7 @@ const Conversation = ({setSelectedConversation, setIsLoading, setSidebarActive, 
                 // Fetch messages after fetching conversations
                 const fetchMessages = async () => {
                     try {
-                        const response = await axios.get(`http://localhost:5000/api/chat/messages/${latestConversation.id}`, {
+                        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/chat/messages/${latestConversation.id}`, {
                             headers: {
                                 'Authorization': 'Bearer ' + savedToken
                             }
@@ -51,7 +51,7 @@ const Conversation = ({setSelectedConversation, setIsLoading, setSidebarActive, 
         setIsLoading(true);
         const fetchMessages = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/chat/messages/${conversation.id}`, {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/chat/messages/${conversation.id}`, {
                     headers: {
                         'Authorization': 'Bearer ' + savedToken
                     }

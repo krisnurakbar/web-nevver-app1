@@ -15,7 +15,7 @@ const TextGeneratorLayer = () => {
     useEffect(() => {
         const fetchConversations = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/chat/conversations', {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/chat/conversations`, {
                     headers: {
                         'Authorization': 'Bearer ' + savedToken
                     }
@@ -28,7 +28,7 @@ const TextGeneratorLayer = () => {
                 // Fetch messages after fetching conversations
                 const fetchMessages = async () => {
                     try {
-                        const response = await axios.get(`http://localhost:5000/api/chat/messages/${latestConversation.id}`, {
+                        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/chat/messages/${latestConversation.id}`, {
                             headers: {
                                 'Authorization': 'Bearer ' + savedToken
                             }
@@ -50,7 +50,7 @@ const TextGeneratorLayer = () => {
         setLastConversation(conversation);
         const fetchMessages = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/chat/messages/${conversation.id}`, {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/chat/messages/${conversation.id}`, {
                     headers: {
                         'Authorization': 'Bearer ' + savedToken
                     }
@@ -66,7 +66,7 @@ const TextGeneratorLayer = () => {
     const handleNewConversation = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/api/chat/conversations', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/chat/conversations`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ const TextGeneratorLayer = () => {
     }
     const handleMessageRequest = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/chat/messages`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/chat/messages`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ const TextGeneratorLayer = () => {
                 // refresh messages
                 const fetchMessages = async () => {
                     try {
-                        const response = await axios.get(`http://localhost:5000/api/chat/messages/${lastConversation.id}`, {
+                        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/chat/messages/${lastConversation.id}`, {
                             headers: {
                                 'Authorization': 'Bearer ' + savedToken
                             }

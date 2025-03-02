@@ -15,7 +15,7 @@ const TextGeneratorNewChatLayer = ({selectedConversation, setIsLoading, isLoadin
     useEffect(() => {
         const fetchConversations = async () => {
           try {
-            const response = await axios.get('http://localhost:5000/api/chat/conversations', {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/chat/conversations`, {
               headers: {
                 'Authorization': 'Bearer ' + savedToken
               }
@@ -39,7 +39,7 @@ const TextGeneratorNewChatLayer = ({selectedConversation, setIsLoading, isLoadin
         setLastConversation(selectedConversation);
         const fetchMessages = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/chat/messages/${selectedConversation.id}`, {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/chat/messages/${selectedConversation.id}`, {
                     headers: {
                         'Authorization': 'Bearer ' + savedToken
                     }
@@ -79,7 +79,7 @@ const TextGeneratorNewChatLayer = ({selectedConversation, setIsLoading, isLoadin
 
     const handleNewConversation = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/chat/conversations', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/chat/conversations`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ const TextGeneratorNewChatLayer = ({selectedConversation, setIsLoading, isLoadin
     }
 
     const handleMessage = async () => {
-        const response = await fetch(`http://localhost:5000/api/chat/messages`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/chat/messages`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ const TextGeneratorNewChatLayer = ({selectedConversation, setIsLoading, isLoadin
             setMessageContent('');
             const fetchMessages = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:5000/api/chat/messages/${lastConversation.id}`, {
+                    const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/chat/messages/${lastConversation.id}`, {
                         headers: {
                             'Authorization': 'Bearer ' + savedToken
                         }

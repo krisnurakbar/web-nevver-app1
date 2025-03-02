@@ -27,7 +27,7 @@ const UsersListLayer = () => {
     const handleCreateUser = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/api/auth/register', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ const UsersListLayer = () => {
     // {/* View User */}
     const handleViewDrawerOpen = async (user) => {
         try {
-          const response = await axios.get(`http://localhost:5000/api/user/${user.id}`, {
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/${user.id}`, {
             headers: {
                 'Authorization': 'Bearer ' + savedToken
             }
@@ -76,7 +76,7 @@ const UsersListLayer = () => {
     const handleUpdateDrawerOpen = async (user) => {
         setIsDrawerUpdateOpen(true);
         try {
-          const response = await axios.get(`http://localhost:5000/api/user/${user.id}`, {
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/${user.id}`, {
             headers: {
                 'Authorization': 'Bearer ' + savedToken
             }
@@ -94,7 +94,7 @@ const UsersListLayer = () => {
     const handleUpdateUser = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:5000/api/user/${selectedUser.id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user/${selectedUser.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ const UsersListLayer = () => {
     // {/* Delete User */}
     const handleDeleteUser = async (user) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/user/delete/${user.id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user/delete/${user.id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ const UsersListLayer = () => {
     useEffect(() => {
         const fetchUsers = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/admin/users', {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/users`, {
             headers: {
                 'Authorization': 'Bearer ' + savedToken
             }
